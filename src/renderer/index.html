@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DMARC Desktop Viewer (prototype)</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 1rem; }
+      label { display:block; margin:6px 0; }
+      input, button { margin-top:4px; }
+      table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+      th, td { border: 1px solid #ddd; padding: 8px; font-size:12px; }
+      th { background:#f0f0f0; text-align:left; }
+      .small { font-size: 11px; color: #555; }
+    </style>
+  </head>
+  <body>
+    <h2>DMARC Desktop Viewer - Prototype (TypeScript)</h2>
+
+    <div id="controls">
+      <label>IMAP Host <input id="host" value="imap.example.com" /></label>
+      <label>Port <input id="port" value="993" /></label>
+      <label><input type="checkbox" id="secure" checked /> Use TLS/IMAPS</label>
+      <label>User <input id="user" /></label>
+      <label>Password <input id="pass" type="password" /></label>
+      <label>Mailbox <input id="mailbox" value="INBOX" /></label>
+      <label>Messages to scan <input id="limit" value="50" type="number" /></label>
+      <button id="scan">Scan for DMARC failures</button>
+      <div id="status" class="small"></div>
+    </div>
+
+    <div id="results">
+      <table id="table" hidden>
+        <thead>
+          <tr>
+            <th>Reporter</th>
+            <th>Report date range</th>
+            <th>Source IP (count)</th>
+            <th>HeaderFrom / EnvelopeFrom</th>
+            <th>DKIM domain / result</th>
+            <th>SPF domain / result</th>
+            <th>Disposition</th>
+            <th>Message / Attachment</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>
